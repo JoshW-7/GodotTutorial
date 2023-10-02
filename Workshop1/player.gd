@@ -61,3 +61,7 @@ func _on_area_2d_body_entered(body):
 	await $AnimationPlayer.animation_finished
 	global_position = start_position
 	state = State.NORMAL
+	
+func play_walk_sound():
+	if is_on_floor():
+		$Walk.play()
