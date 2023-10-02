@@ -1,0 +1,9 @@
+extends Area2D
+
+
+
+
+func _on_body_entered(body):
+	if body is Player:
+		$Win.play()
+		body.emit_particles()

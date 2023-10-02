@@ -139,4 +139,15 @@ stream = ExtResource("4_mftsh")
 [node name="Walk" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_83qcj")
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 25
+one_shot = true
+direction = Vector2(0, -1)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+color = Color(0, 0.611765, 0, 1)
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
