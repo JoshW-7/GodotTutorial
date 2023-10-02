@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwacy2escec00"]
+[gd_scene load_steps=7 format=3 uid="uid://dwacy2escec00"]
 
 [ext_resource type="Texture2D" uid="uid://bt5ceebnnbnt7" path="res://assets/tile_atlas.png" id="2_pacu2"]
 [ext_resource type="PackedScene" uid="uid://tqg41x1ap7uj" path="res://player.tscn" id="2_sihvs"]
 [ext_resource type="AudioStream" uid="uid://bono1o6u6jsdo" path="res://assets/04 - Bubble Daze.mp3" id="3_2w4jd"]
+[ext_resource type="Texture2D" uid="uid://cebdqjsxdx8k6" path="res://assets/Background_2.png" id="4_h2v7d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7ijxr"]
 texture = ExtResource("2_pacu2")
@@ -1728,3 +1729,12 @@ layer_0/tile_data = PackedInt32Array(655360, 196608, 0, 655361, 196608, 0, 65536
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_2w4jd")
 volume_db = -5.0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground"]
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 1169.0
+offset_bottom = 659.0
+texture = ExtResource("4_h2v7d")
