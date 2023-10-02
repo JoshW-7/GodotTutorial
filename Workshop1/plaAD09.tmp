@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://tqg41x1ap7uj"]
+[gd_scene load_steps=12 format=3 uid="uid://tqg41x1ap7uj"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_asdm5"]
 [ext_resource type="Texture2D" uid="uid://c6c82fyd387gv" path="res://assets/spritesheet.png" id="1_ix340"]
+[ext_resource type="AudioStream" uid="uid://d3b3gp2slhnum" path="res://assets/jump.wav" id="3_ry6xl"]
+[ext_resource type="AudioStream" uid="uid://b7utlg2gucafq" path="res://assets/hit.wav" id="4_mftsh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mb2t3"]
 radius = 6.6
@@ -22,10 +24,9 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_88d51"]
+[sub_resource type="Animation" id="Animation_n0yna"]
 resource_name = "hit"
-length = 0.6
-loop_mode = 2
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -33,10 +34,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [15, 16, 15, 16, 15, 16]
+"values": [14, 15, 16, 15, 16, 15, 16, 15]
 }
 
 [sub_resource type="Animation" id="Animation_hy4wb"]
@@ -76,10 +77,14 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v0ajp"]
 _data = {
 "RESET": SubResource("Animation_s2eif"),
-"hit": SubResource("Animation_88d51"),
+"hit": SubResource("Animation_n0yna"),
 "idle": SubResource("Animation_hy4wb"),
 "walk": SubResource("Animation_spvge")
 }
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wrloc"]
+radius = 6.0
+height = 17.6
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(5, 5)
@@ -97,3 +102,20 @@ autoplay = "idle"
 libraries = {
 "": SubResource("AnimationLibrary_v0ajp")
 }
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_wrloc")
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ry6xl")
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mftsh")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
