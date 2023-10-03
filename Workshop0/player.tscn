@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://tqg41x1ap7uj"]
+[gd_scene load_steps=10 format=3 uid="uid://tqg41x1ap7uj"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_asdm5"]
 [ext_resource type="Texture2D" uid="uid://c6c82fyd387gv" path="res://assets/spritesheet.png" id="1_ix340"]
@@ -73,11 +73,29 @@ tracks/0/keys = {
 "values": [4, 5, 6, 7, 8, 9]
 }
 
+[sub_resource type="Animation" id="Animation_5tcps"]
+resource_name = "jump"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v0ajp"]
 _data = {
 "RESET": SubResource("Animation_s2eif"),
 "hit": SubResource("Animation_88d51"),
 "idle": SubResource("Animation_hy4wb"),
+"jump": SubResource("Animation_5tcps"),
 "walk": SubResource("Animation_spvge")
 }
 

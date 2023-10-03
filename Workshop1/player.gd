@@ -39,7 +39,9 @@ func _physics_process(delta):
 			else:
 				velocity.x = move_toward(velocity.x, 0, SPEED)
 		
-			if velocity.x != 0:
+			if not is_on_floor():
+				$AnimationPlayer.play("jump")
+			elif velocity.x != 0:
 				$AnimationPlayer.play("walk")
 			else:
 				$AnimationPlayer.play("idle")
